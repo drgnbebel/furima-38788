@@ -47,3 +47,18 @@
 
 - belongs_to :user
 - belongs_to :item
+
+## Addresses テーブル
+
+| Column       | Type       | Options                            |
+| ------------ | ---------- | ---------------------------------- |
+| postal_cord  | string     | null: false                        |
+| prefecture   | references | null: false, foreign_key: true     |
+| city         | string     | null: false                        |
+| block        | string     | null: false                        |
+| building     | string     | null: false                        |
+| phone_number | string     | null: false                        |
+
+### Association
+
+- has_one    :order
