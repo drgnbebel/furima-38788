@@ -51,14 +51,14 @@
 
 ## addresses テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| postal_cord   | string     | null: false                    |
-| prefecture_id | integer    | null: false                    |
-| city          | references | null: false, foreign_key: true |
-| block         | references | null: false, foreign_key: true |
-| building      | references | foreign_key: true              |
-| phone_number  | references | null: false, foreign_key: true |
+| Column        | Type       | Options     |
+| ------------- | ---------- | ----------- |
+| postal_cord   | integer    | null: false |
+| prefecture_id | integer    | null: false |
+| city          | integer    | null: false |
+| block         | integer    | null: false |
+| building      | integer    |             |
+| phone_number  | integer    | null: false,|
 
 ### Association
 
