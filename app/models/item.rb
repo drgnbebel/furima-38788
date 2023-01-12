@@ -1,11 +1,14 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
   belongs_to :user
   #has_one    :order
+
   has_one_attached :image
-end
 
-private
-
-def item_params
-  params.require(:item).permit(:image, :name, :description, :category_id, :item_status_id, :shipping_cost_id, :prefecture_id, :shipping_date_id, :price).merge(user_id: current_user.id)
+  belongs_to :category
+  belongs_to :item_status
+  belongs_to :shipping_cost
+  belongs_to :prefecture
+  belongs_to :shipping_date
 end
