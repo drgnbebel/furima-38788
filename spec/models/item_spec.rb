@@ -36,6 +36,11 @@ RSpec.describe Item, type: :model do
       end
     end
     context '出品登録できない場合' do
+      it 'ユーザーが紐付いていなければ投稿できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+      end
       it "商品画像が選択されないと出品登録できない" do
         @item.image = nil
         @item.valid?
