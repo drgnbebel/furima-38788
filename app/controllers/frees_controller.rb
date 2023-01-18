@@ -20,11 +20,9 @@ class FreesController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
     if @item.user_id == current_user.id
     else
       redirect_to root_path
@@ -32,7 +30,6 @@ class FreesController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
     @item.update(item_params)
     if @item.valid?
       redirect_to free_path(item_params)
