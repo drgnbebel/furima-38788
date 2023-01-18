@@ -1,6 +1,7 @@
 class FreesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :destroy]
   
   def index
     @items = Item.order("created_at DESC")
@@ -23,7 +24,7 @@ class FreesController < ApplicationController
   end
 
   def edit
-    if @item.user_id == current_user.id
+    if set_user
     else
       redirect_to root_path
     end
@@ -38,6 +39,15 @@ class FreesController < ApplicationController
     end
   end
 
+  def destroy
+    if set_user
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
+
  private
 
  def item_params
@@ -46,5 +56,9 @@ class FreesController < ApplicationController
 
  def set_item
   @item = Item.find(params[:id])
+ end
+
+ def set_user
+  @item.user_id == current_user.id
  end
 end
