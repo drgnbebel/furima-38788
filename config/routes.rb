@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   
   root to: "frees#index"
   resources :frees
+  resources :orders, only: [:index, :create]
 end
