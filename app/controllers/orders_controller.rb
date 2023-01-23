@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :no_set_item, only: [:index, :create]
 
 
@@ -25,6 +26,7 @@ class OrdersController < ApplicationController
 
   def no_set_item
     @item = Item.find(params[:free_id])
+    redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
   end
 
   def pay_item
