@@ -24,7 +24,7 @@ class FreesController < ApplicationController
   end
 
   def edit
-    if set_user
+    if set_user && @item.order.nil?
     else
       redirect_to root_path
     end
